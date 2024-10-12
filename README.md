@@ -29,6 +29,10 @@ Add to your `configuration.yaml`:
 
 ```
 recorder_service:
+
+homeassistant:
+  allowlist_external_dirs:
+    - "/config/tts/audiorec" # Target file's folder
 ```
 
 Add the `resource` to your home-assistant:
