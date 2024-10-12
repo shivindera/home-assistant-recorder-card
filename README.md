@@ -2,7 +2,7 @@
 
 ![audio-recorder-card](https://raw.githubusercontent.com/spifitu/images/main/audio-recorder-card.PNG)
 
-You can use this card to record your voice and send a wav file via http to a server (e.g. rhasspy). 
+You can use this card to record your voice and store the file locally. 
 
 The card uses [recorder.js by addpipe](https://github.com/addpipe/simple-recorderjs-demo)
 
@@ -52,7 +52,7 @@ Or you write into the yaml directly `type:'custom:audio-recorder-card'`.
 
 attribute | description | example
 ------------ | ------------- | -------------
-target **(required)**  | the url of the http server you want to send the wav file | `http://<your-rhasspi-url>:12101/api/speech-to-intent`
+target **(required)**  | the file location where you want to store the wav file | `/config/tts/audiorec/rec.wav`
 header **(optional)** | add a header to your recorder card | `My awesome recorder`
 color **(optional)** | change the css color attribute of the recorder | `ligthgreen`
 size **(optional)** | change the size of the recorder (default=50px) | `100px`
@@ -61,7 +61,7 @@ size **(optional)** | change the size of the recorder (default=50px) | `100px`
 
 ```
 type: 'custom:audio-recorder-card'
-target: 'http://localhost:12101/api/speech-to-intent'
+target: '/config/tts/audiorec/rec.wav'
 ```
 
 Then the audio recorder card should appear:
