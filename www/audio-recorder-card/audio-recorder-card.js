@@ -50,6 +50,20 @@ function startRecording(button, hass, config) {
         showMessage(err.toString(), err.message, config);
       });
   } catch (err) {
+    if (window.location.protocol !== 'https:') {
+      showMessage('Error', 'getUserMedia requires HTTPS. Please access the site over HTTPS.', config);
+      return;
+    }
+
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      showMessage(
+        'Error',
+        'getUserMedia is not supported in this browser. Please update your browser or use a supported one.',
+        config
+      );
+      return;
+    }
+
     showMessage('Error', 'Unknown - ' + err.message, config);
   }
 }
