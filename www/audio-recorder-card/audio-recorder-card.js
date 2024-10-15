@@ -41,6 +41,8 @@ function startRecording(button, hass, config) {
         config.cardRec = new Recorder(cardInput, { numChannels: 1 });
         config.cardRec.record();
 
+        config.recordingTimeout = setTimeout(() => stopRecording(button, hass, config), 15000);
+
         var icon = button.getElementsByTagName('img')[0];
         icon.src = icon.getAttribute('data-icon-rec');
 
@@ -69,6 +71,7 @@ function startRecording(button, hass, config) {
 }
 
 function stopRecording(button, hass, config) {
+  clearTimeout(config.recordingTimeout);
   config.cardRec.stop();
   config.gumStream.getAudioTracks()[0].stop();
 
@@ -76,6 +79,8 @@ function stopRecording(button, hass, config) {
   icon.src = icon.getAttribute('data-icon-img');
 
   button.getElementsByClassName('isRecording')[0].classList.add('hide');
+
+  if (!confirm("Do you want to send a broadcast?")) return;
 
   config.cardRec.exportWAV(function (blob) {
     blob.arrayBuffer().then((buffer) => {
