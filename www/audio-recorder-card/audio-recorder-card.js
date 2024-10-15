@@ -80,7 +80,7 @@ function stopRecording(button, hass, config) {
 
   button.getElementsByClassName('isRecording')[0].classList.add('hide');
 
-  if (!confirm("Do you want to send a broadcast?")) return;
+  if (!confirm("Do you want to broadcast the message?")) return;
 
   config.cardRec.exportWAV(function (blob) {
     blob.arrayBuffer().then((buffer) => {
